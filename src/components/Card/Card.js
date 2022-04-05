@@ -11,11 +11,10 @@ const Card = (props) => {
                 <h3 className='my-4'><span className='font-bold'>Name:</span> {name}</h3>
                 <p className='message'><span className='font-bold'>Review:</span> {comment} </p>
             </div>
-            <div className=''>
-                <h3 className='font-sans font-bold'>Ratings: </h3>
+            <div>
+                <h5 className='font-bold'>Rating: <p>★★★☆☆</p></h5>
             </div>
-
-        </div>
+        </div >
     );
 };
 
