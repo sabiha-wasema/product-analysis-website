@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react';
-// import Review from '../Review/Review';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
 import './Home.css';
 import Card from '../Card/Card';
+import CustomHook from '../CustomHook/CustomHook';
 
 const Home = () => {
     let navigation = useNavigate();
 
-    const [reviews, setReviews] = useState([]);
-    useEffect(() => {
-        fetch('data.json')
-            .then(res => res.json())
-            .then(data => setReviews(data));
-    }, [])
+    const [reviews, setReviews] = CustomHook();
 
     return (
         <div className=' px-4 pt-20 pb-24mx-auto max-w-7xl md:px-2 '>
