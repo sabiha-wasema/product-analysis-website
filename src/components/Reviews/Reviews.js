@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Card/Card';
 
-const Review = () => {
+const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
         fetch('data.json')
@@ -13,13 +13,12 @@ const Review = () => {
             <h2 className='text-center text-3xl font-bold pb-12'>Customer Reviews(3)</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-items-center mx-20 gap-8'>
                 {
-                    reviews.slice(0, 3).map(review => <Card key={review.id} review={review}></Card>)
+                    reviews.slice(4, 8).map(review => <Card key={review.id} review={review}></Card>)
                 }
             </div>
-
 
         </div >
     );
 };
 
-export default Review;
+export default Reviews;
