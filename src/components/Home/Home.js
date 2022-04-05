@@ -1,11 +1,21 @@
-import React from 'react';
-import Review from '../Review/Review';
+import React, { useEffect, useState } from 'react';
+// import Review from '../Review/Review';
 import { useNavigate } from 'react-router-dom';
+
+
 import './Home.css';
-import Reviews from '../Reviews/Reviews';
+import Card from '../Card/Card';
 
 const Home = () => {
     let navigation = useNavigate();
+
+    const [reviews, setReviews] = useState([]);
+    useEffect(() => {
+        fetch('data.json')
+            .then(res => res.json())
+            .then(data => setReviews(data));
+    }, [])
+
     return (
         <div className=' px-4 pt-20 pb-24mx-auto max-w-7xl md:px-2 '>
             <div className=' grid grid-cols-1 md:grid-cols-2 justify-items-center content-center gsp-4 mx-16'>
@@ -21,8 +31,16 @@ const Home = () => {
                     <img className='img' src="https://cdn.katiecouric.com/I0U-318.3jGg~29547/w:1410/h:870/q:75/https://katiecouric.com/wp-content/uploads/2021/04/painting-supplies.jpg" alt=""></img>
                 </div>
             </div>
-            <Review>
-            </Review>
+            <div>
+                <div className='px-4 pt-10 pb-15 mx-auto max-w-7xl md:px-2 mt-8'>
+                    <h2 className='text-center text-3xl font-bold pb-12'>Customer Reviews(3)</h2>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-items-center mx-20 gap-8'>
+                        {
+                            reviews.slice(0, 3).map(review => <Card key={review.id} review={review}></Card>)
+                        }
+                    </div>
+                </div>
+            </div>
             <button onClick={() => navigation('/review')} className='py-2 px-3 md:mb-8 text-white mx-1 w-auto mt-2 bg-gray-800 sm:mb-0' > See All Reviews</button>
         </div >
 
